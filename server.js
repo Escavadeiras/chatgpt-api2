@@ -18,7 +18,8 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 app.post("/consultar", async (req, res) => {
   const { categoria, peso } = req.body;
 
-  const prompt = `Quais são os principais modelos disponíveis no mercado para a categoria "${categoria}" com peso operacional de "${peso}"? Inclua exemplos da Caterpillar, Komatsu e Volvo.`;
+ const prompt = `Liste os principais modelos para a categoria "${categoria}" com peso operacional de "${peso}", no formato de uma tabela comparativa (sem explicações), com colunas: Fabricante | Modelo | Peso Operacional | Potência | Capacidade da Caçamba. Foque em Caterpillar, Komatsu e Volvo.`;
+
 
   try {
     const resposta = await openai.chat.completions.create({
