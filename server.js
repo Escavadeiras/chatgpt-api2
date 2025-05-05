@@ -3,8 +3,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { OpenAI } from "openai";
 import dotenv from "dotenv";
-dotenv.config();
 
+dotenv.config(); // Carrega variáveis do ambiente
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Cria cliente da OpenAI com sua chave secreta
+// Cria cliente da OpenAI com a chave da variável de ambiente
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.post("/consultar", async (req, res) => {
@@ -29,7 +29,7 @@ app.post("/consultar", async (req, res) => {
 
     res.json({ resposta: resposta.choices[0].message.content });
   } catch (error) {
-    console.error("Erro ao consultar OpenAI:", error.message);
+    console.error("❌ Erro ao consultar OpenAI:", error.message);
     res.status(500).json({ erro: "Erro ao consultar o ChatGPT." });
   }
 });
@@ -39,6 +39,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`🚀 Servidor rodando na porta ${port}`);
   console.log("🔑 OPENAI_API_KEY carregada:", process.env.OPENAI_API_KEY ? "✅ PRESENTE" : "❌ NÃO ENCONTRADA");
 });
