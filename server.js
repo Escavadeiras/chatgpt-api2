@@ -5,6 +5,9 @@ import { OpenAI } from "openai";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log("🔑 OPENAI_API_KEY carregada:", process.env.OPENAI_API_KEY ? "✅ PRESENTE" : "❌ NÃO ENCONTRADA");
+;
+
 const app = express();
 const port = process.env.PORT || 3000;
 
