@@ -23,7 +23,7 @@ app.post("/consultar", async (req, res) => {
   try {
     const resposta = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       temperature: 0.7
     });
 
